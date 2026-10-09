@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTU Evangelical Christian Students Fellowship</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+Ethiopic:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#0B192C',
+                            900: '#030712',
+                            950: '#020617'
+                        },
+                        royal: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a'
+                        },
+                        cyan: {
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                            600: '#0891b2'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Noto Sans Ethiopic', 'sans-serif'],
+                        amharic: ['Noto Sans Ethiopic', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(11, 25, 44, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .ticker {
+            display: inline-block;
+            animation: ticker 35s linear infinite;
+        }
+        .ticker:hover {
+            animation-play-state: paused;
+        }
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1d4ed8;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+<body class="bg-navy-950 text-slate-100 font-sans min-h-screen flex flex-col antialiased selection:bg-cyan-500 selection:text-navy-950">
+
+    <!-- Top Announcement & Social Bar -->
+    <div id="top-bar" class="bg-navy-900 border-b border-royal-900/40 text-xs py-2 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-4 text-slate-300">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-envelope text-cyan-400"></i> <span id="top-email">dtuecsf@gmail.com</span></span>
+                <span class="hidden md:flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-cyan-400"></i> <span id="top-address">Debre Tabor University, Ethiopia</span></span>
+            </div>
+            <div class="flex items-center gap-4">
+                <!-- Social Links -->
+                <div class="flex items-center gap-3 text-slate-300">
+                    <a id="link-tg" href="https://t.me/dtu_fellow" target="_blank" class="hover:text-cyan-400 transition"><i class="fa-brands fa-telegram text-base"></i></a>
+                    <a id="link-tiktok" href="http://tiktok.com/@dtuecsf" target="_blank" class="hover:text-cyan-400 transition"><i class="fa-brands fa-tiktok text-base"></i></a>
+                    <a id="link-ig" href="https://www.instagram.com/debretaborfellow" target="_blank" class="hover:text-cyan-400 transition"><i class="fa-brands fa-instagram text-base"></i></a>
+                </div>
+                <div class="h-3 w-px bg-slate-700"></div>
+                <!-- Dual Language Toggle -->
+                <button onclick="toggleLanguage()" class="flex items-center gap-1.5 bg-royal-900/80 hover:bg-royal-800 text-cyan-300 px-2.5 py-1 rounded border border-royal-700/50 transition">
+                    <i class="fa-solid fa-globe text-xs"></i>
+                    <span id="lang-btn-text" class="font-semibold">አማርኛ</span>
+                </button>
+                <!-- Admin Lock Switcher -->
+                <button onclick="openAdminModal()" class="flex items-center gap-1 text-xs text-slate-400 hover:text-white transition ml-2">
+                    <i class="fa-solid fa-lock text-cyan-400"></i>
+                    <span id="txt-admin-portal">Admin CMS</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header with Official Logo -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-royal-800/40 shadow-lg shadow-black/40">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Brand & Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <img id="site-logo" src="https://images.unsplash.com/photo-1548625361-180e03c4f748?w=150&auto=format&fit=crop&q=80" alt="DTU Logo" class="w-12 h-12 object-cover rounded-full border-2 border-cyan-400 shadow-md shadow-cyan-500/20 group-hover:scale-105 transition">
+                <div>
+                    <h1 id="site-title" class="font-extrabold text-lg sm:text-xl text-white tracking-wide group-hover:text-cyan-300 transition leading-tight">DTU Fellowship</h1>
+                    <p id="site-subtitle" class="text-xs text-cyan-400 font-medium">Debre Tabor University Evangelical Fellowship</p>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-200">
+                <a href="#hero" class="hover:text-cyan-400 transition py-1" id="nav-home">Home</a>
+                <a href="#notice-board" class="hover:text-cyan-400 transition py-1" id="nav-notices">Notices</a>
+                <a href="#programs" class="hover:text-cyan-400 transition py-1" id="nav-programs">Programs</a>
+                <a href="#ministries" class="hover:text-cyan-400 transition py-1" id="nav-ministries">Ministries</a>
+                <a href="#prayer-wall" class="hover:text-cyan-400 transition py-1" id="nav-prayer">Prayer Wall</a>
+                <a href="#media-vault" class="hover:text-cyan-400 transition py-1" id="nav-media">Media Vault</a>
+                <a href="#developer" class="hover:text-cyan-400 transition py-1" id="nav-developer">Developer</a>
+            </nav>
+
+            <!-- Quick Action CTA -->
+            <div class="hidden sm:flex items-center gap-3">
+                <a href="#prayer-wall" class="bg-gradient-to-r from-royal-600 to-cyan-500 hover:from-royal-500 hover:to-cyan-400 text-white font-semibold text-xs px-4 py-2 rounded-full shadow-lg shadow-royal-600/30 transition transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-hands-praying mr-1.5"></i> <span id="btn-submit-prayer-txt">Submit Prayer</span>
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button onclick="toggleMobileMenu()" class="lg:hidden text-slate-300 hover:text-white p-2">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-navy-900 border-b border-royal-800 px-4 pt-2 pb-4 space-y-2">
+            <a href="#hero" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-cyan-400 font-medium" id="mob-home">Home</a>
+            <a href="#notice-board" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-cyan-400 font-medium" id="mob-notices">Notices</a>
+            <a href="#programs" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-cyan-400 font-medium" id="mob-programs">Programs</a>
+            <a href="#ministries" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-cyan-400 font-medium" id="mob-ministries">Ministries</a>
+            <a href="#prayer-wall" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-cyan-400 font-medium" id="mob-prayer">Prayer Wall</a>
+            <a href="#media-vault" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-cyan-400 font-medium" id="mob-media">Media Vault</a>
+            <a href="#developer" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-cyan-400 font-medium" id="mob-developer">Developer</a>
+        </div>
+    </header>
+
+    <!-- Live Announcement Ticker Banner -->
+    <div class="bg-royal-900/90 border-b border-royal-700/60 text-xs py-2 px-4 flex items-center gap-3 overflow-hidden shadow-inner">
+        <span class="bg-cyan-500 text-navy-950 font-bold px-2.5 py-0.5 rounded text-[11px] uppercase tracking-wider flex items-center gap-1 shrink-0">
+            <i class="fa-solid fa-bullhorn text-xs"></i> <span id="lbl-live-updates">ANNOUNCEMENTS</span>
+        </span>
+        <div class="ticker-wrap w-full">
+            <div id="ticker-content" class="ticker text-slate-200 font-medium">
+                <!-- Populated via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Hero Section -->
+    <section id="hero" class="relative min-h-[520px] flex items-center justify-center overflow-hidden py-16 px-4">
+        <!-- Background Overlay Image & Colors -->
+        <div class="absolute inset-0 z-0">
+            <img id="hero-bg-img" src="https://images.unsplash.com/photo-1519817650390-64a93db51149?w=1600&auto=format&fit=crop&q=80" alt="Hero Background" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-navy-950/95 via-navy-900/85 to-royal-950/90"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.15),transparent_50%)]"></div>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto text-center space-y-6">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-royal-800/60 border border-cyan-400/30 text-cyan-300 text-xs font-semibold backdrop-blur-md">
+                <i class="fa-solid fa-church"></i>
+                <span id="hero-badge">Debre Tabor University Evangelical Christian Fellowship</span>
+            </div>
+            
+            <h1 id="hero-slogan" class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight drop-shadow-lg font-amharic">
+                « ውዱን ለውዳችን - ህብረታችን መሣሪያችን! »
+            </h1>
+
+            <p id="hero-desc" class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto font-light leading-relaxed">
+                Welcome to the official digital hub of DTU Fellowship. Empowering students, building faith, fostering unity, and preaching the gospel across campus.
+            </p>
+
+            <div class="flex flex-wrap justify-center items-center gap-4 pt-4">
+                <a href="#notice-board" class="bg-cyan-500 hover:bg-cyan-400 text-navy-950 font-bold px-6 py-3 rounded-lg shadow-lg shadow-cyan-500/25 transition transform hover:-translate-y-0.5 flex items-center gap-2">
+                    <i class="fa-solid fa-newspaper"></i> <span id="btn-hero-announcements">Latest Notices</span>
+                </a>
+                <a href="#programs" class="bg-royal-800/80 hover:bg-royal-700 text-white font-semibold px-6 py-3 rounded-lg border border-royal-600 transition backdrop-blur-sm flex items-center gap-2">
+                    <i class="fa-regular fa-calendar-check text-cyan-400"></i> <span id="btn-hero-schedule">Weekly Schedule</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-12 space-y-16">
+
+        <!-- Notice Board Section -->
+        <section id="notice-board" class="space-y-6 scroll-mt-24">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-royal-800/60 pb-4">
+                <div>
+                    <span class="text-cyan-400 font-bold text-xs uppercase tracking-wider block mb-1">Stay Informed</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-circle-exclamation text-royal-500"></i>
+                        <span id="hdr-notice-title">Notice Board & Announcements</span>
+                    </h2>
+                </div>
+
+                <!-- Priority Filters -->
+                <div class="flex items-center gap-2 overflow-x-auto pb-1">
+                    <button onclick="filterAnnouncements('All')" class="ann-filter-btn bg-royal-700 text-white text-xs font-semibold px-3 py-1.5 rounded-full border border-royal-500 transition shrink-0" data-filter="All">All</button>
+                    <button onclick="filterAnnouncements('Urgent')" class="ann-filter-btn bg-navy-900 text-slate-300 hover:text-white text-xs font-semibold px-3 py-1.5 rounded-full border border-slate-700 transition shrink-0" data-filter="Urgent">Urgent 🔥</button>
+                    <button onclick="filterAnnouncements('General')" class="ann-filter-btn bg-navy-900 text-slate-300 hover:text-white text-xs font-semibold px-3 py-1.5 rounded-full border border-slate-700 transition shrink-0" data-filter="General">General 📢</button>
+                    <button onclick="filterAnnouncements('Event')" class="ann-filter-btn bg-navy-900 text-slate-300 hover:text-white text-xs font-semibold px-3 py-1.5 rounded-full border border-slate-700 transition shrink-0" data-filter="Event">Events 🗓️</button>
+                </div>
+            </div>
+
+            <!-- Announcement Cards Grid -->
+            <div id="announcements-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically populated via JS -->
+            </div>
+        </section>
+
+        <!-- Programs & Weekly Schedule -->
+        <section id="programs" class="space-y-6 scroll-mt-24">
+            <div class="text-center max-w-2xl mx-auto space-y-2">
+                <span class="text-cyan-400 font-bold text-xs uppercase tracking-wider">Fellowship Gatherings</span>
+                <h2 id="hdr-programs-title" class="text-2xl sm:text-3xl font-bold text-white">Programs & Weekly Schedule</h2>
+                <p id="hdr-programs-sub" class="text-slate-400 text-sm">Join us throughout the week in prayer, worship, word, and fellowship.</p>
+            </div>
+
+            <div id="programs-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically populated via JS -->
+            </div>
+        </section>
+
+        <!-- Ministry Leader Directory -->
+        <section id="ministries" class="space-y-6 scroll-mt-24">
+            <div class="border-b border-royal-800/60 pb-4">
+                <span class="text-cyan-400 font-bold text-xs uppercase tracking-wider block mb-1">Serving Campus Together</span>
+                <h2 id="hdr-ministry-title" class="text-2xl sm:text-3xl font-bold text-white">Ministry Teams & Leadership</h2>
+            </div>
+
+            <div id="ministries-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Dynamically populated via JS (8 ministries) -->
+            </div>
+        </section>
+
+        <!-- Prayer Wall & Community Discussion -->
+        <section id="prayer-wall" class="grid grid-cols-1 lg:grid-cols-3 gap-8 scroll-mt-24">
+            <!-- Prayer Requests Wall -->
+            <div class="lg:col-span-2 glass-panel p-6 rounded-2xl border border-royal-800 space-y-6">
+                <div class="flex items-center justify-between border-b border-royal-800 pb-4">
+                    <div>
+                        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-hands-praying text-cyan-400"></i>
+                            <span id="hdr-prayer-wall">Community Prayer Wall</span>
+                        </h3>
+                        <p id="sub-prayer-wall" class="text-slate-400 text-xs">Share your prayer requests and lift up one another in faith.</p>
+                    </div>
+                    <span id="prayer-count-badge" class="bg-royal-800 text-cyan-300 font-bold text-xs px-3 py-1 rounded-full border border-royal-600">
+                        0 Prayers
+                    </span>
+                </div>
+
+                <!-- Submit Prayer Form -->
+                <form id="form-add-prayer" onsubmit="handlePrayerSubmit(event)" class="space-y-4 bg-navy-900/60 p-4 rounded-xl border border-royal-900/60">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <input type="text" id="prayer-name" placeholder="Your Name / Anonymous" class="bg-navy-950 border border-royal-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-400">
+                        <input type="text" id="prayer-title" placeholder="Prayer Title (e.g. Exam Success)" required class="bg-navy-950 border border-royal-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-400">
+                    </div>
+                    <textarea id="prayer-body" rows="3" placeholder="Write your prayer request here..." required class="w-full bg-navy-950 border border-royal-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-400"></textarea>
+                    <button type="submit" class="w-full bg-royal-600 hover:bg-royal-500 text-white font-semibold py-2 rounded-lg text-sm transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i> <span id="btn-post-prayer">Post Prayer Request</span>
+                    </button>
+                </form>
+
+                <!-- Prayer Requests List -->
+                <div id="prayer-list" class="space-y-4 max-h-[480px] overflow-y-auto pr-1">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+
+            <!-- Community Discussion Q&A Board -->
+            <div class="glass-panel p-6 rounded-2xl border border-royal-800 space-y-6 flex flex-col justify-between">
+                <div>
+                    <div class="border-b border-royal-800 pb-4 mb-4">
+                        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-comments text-cyan-400"></i>
+                            <span id="hdr-qa-title">Fellowship Q&A</span>
+                        </h3>
+                        <p id="sub-qa-title" class="text-slate-400 text-xs">Questions, testimonies, and spiritual discussions.</p>
+                    </div>
+
+                    <div id="qa-list" class="space-y-4 max-h-[380px] overflow-y-auto pr-1">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+
+                <!-- Add Quick Comment -->
+                <form id="form-add-qa" onsubmit="handleQASubmit(event)" class="space-y-2 pt-4 border-t border-royal-800">
+                    <input type="text" id="qa-user" placeholder="Your Name" required class="w-full bg-navy-950 border border-royal-800 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-cyan-400">
+                    <textarea id="qa-text" rows="2" placeholder="Ask a question or share a note..." required class="w-full bg-navy-950 border border-royal-800 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-cyan-400"></textarea>
+                    <button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-400 text-navy-950 font-bold py-1.5 rounded-lg text-xs transition">
+                        <i class="fa-solid fa-comment-dots"></i> <span id="btn-post-qa">Submit Discussion</span>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Media & Study Resource Vault -->
+        <section id="media-vault" class="space-y-6 scroll-mt-24">
+            <div class="border-b border-royal-800/60 pb-4">
+                <span class="text-cyan-400 font-bold text-xs uppercase tracking-wider block mb-1">Audio & Downloads</span>
+                <h2 id="hdr-media-vault" class="text-2xl sm:text-3xl font-bold text-white">Fellowship Media Vault</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Audio Worship & Sermons -->
+                <div class="glass-panel p-6 rounded-2xl border border-royal-800 space-y-4">
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-music text-cyan-400"></i>
+                        <span id="hdr-audio-vault">Audio Worship & Sermons</span>
+                    </h3>
+                    <div id="audio-list" class="space-y-3">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+
+                <!-- Study Guides & PDF Downloads -->
+                <div class="glass-panel p-6 rounded-2xl border border-royal-800 space-y-4">
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-file-pdf text-red-400"></i>
+                        <span id="hdr-pdf-vault">Study Guides & Devotionals</span>
+                    </h3>
+                    <div id="pdf-list" class="space-y-3">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Developer Info CMS Card -->
+        <section id="developer" class="scroll-mt-24">
+            <div class="glass-panel p-8 rounded-3xl border border-royal-700/60 bg-gradient-to-br from-navy-900 via-navy-950 to-royal-950 shadow-2xl relative overflow-hidden">
+                <div class="absolute -right-12 -bottom-12 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="flex flex-col md:flex-row items-center gap-8 relative z-10">
+                    <div class="relative shrink-0">
+                        <img id="dev-photo" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80" alt="Developer Dereje Zena" class="w-36 h-36 sm:w-44 sm:h-44 rounded-2xl object-cover border-2 border-cyan-400 shadow-xl shadow-cyan-500/20">
+                        <span class="absolute -bottom-2 -right-2 bg-royal-600 text-white p-2 rounded-xl text-xs font-bold border border-cyan-300">
+                            <i class="fa-solid fa-code"></i>
+                        </span>
+                    </div>
+
+                    <div class="space-y-3 text-center md:text-left flex-grow">
+                        <div class="inline-block px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 text-xs font-semibold border border-cyan-500/20">
+                            Lead Web Developer
+                        </div>
+                        <h2 id="dev-name" class="text-2xl sm:text-3xl font-extrabold text-white">Dereje Zena</h2>
+                        <p id="dev-role" class="text-cyan-400 text-sm font-medium">Software Developer & Ministry Media Team Lead</p>
+                        <p id="dev-bio" class="text-slate-300 text-sm leading-relaxed max-w-2xl">
+                            Dedicated to leveraging technology and modern software engineering for ministry advancement, empowering student fellowship communities, and building scalable digital platforms.
+                        </p>
+
+                        <!-- Social Handles -->
+                        <div class="flex flex-wrap justify-center md:justify-start items-center gap-3 pt-2">
+                            <a id="dev-handle-tg1" href="https://t.me/mediator_one" target="_blank" class="bg-navy-900 hover:bg-royal-900 text-cyan-300 px-3 py-1.5 rounded-lg border border-royal-800 text-xs font-semibold transition flex items-center gap-1.5">
+                                <i class="fa-brands fa-telegram text-cyan-400"></i> @mediator_one
+                            </a>
+                            <a id="dev-handle-tg2" href="https://t.me/derezena" target="_blank" class="bg-navy-900 hover:bg-royal-900 text-cyan-300 px-3 py-1.5 rounded-lg border border-royal-800 text-xs font-semibold transition flex items-center gap-1.5">
+                                <i class="fa-brands fa-telegram text-cyan-400"></i> @derezena
+                            </a>
+                            <a id="dev-handle-tg3" href="https://t.me/darius_zena" target="_blank" class="bg-navy-900 hover:bg-royal-900 text-cyan-300 px-3 py-1.5 rounded-lg border border-royal-800 text-xs font-semibold transition flex items-center gap-1.5">
+                                <i class="fa-brands fa-telegram text-cyan-400"></i> @darius_zena
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-navy-900 border-t border-royal-900/60 py-12 px-4 text-slate-400 text-xs">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div class="space-y-3">
+                <div class="flex items-center gap-3">
+                    <img id="footer-logo" src="https://images.unsplash.com/photo-1548625361-180e03c4f748?w=150&auto=format&fit=crop&q=80" alt="DTU Logo" class="w-8 h-8 rounded-full border border-cyan-400">
+                    <span id="footer-title" class="text-white font-bold text-base">DTU Fellowship</span>
+                </div>
+                <p id="footer-slogan" class="text-slate-400">« ውዱን ለውዳችን - ህብረታችን መሣሪያችን! »</p>
+                <p class="text-slate-500">Debre Tabor University, Amhara Region, Ethiopia.</p>
+            </div>
+
+            <div>
+                <h4 class="text-white font-semibold text-sm mb-3">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="#hero" class="hover:text-cyan-400 transition">Home</a></li>
+                    <li><a href="#notice-board" class="hover:text-cyan-400 transition">Announcements</a></li>
+                    <li><a href="#programs" class="hover:text-cyan-400 transition">Weekly Schedule</a></li>
+                    <li><a href="#ministries" class="hover:text-cyan-400 transition">Ministries</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-semibold text-sm mb-3">Connect With Us</h4>
+                <ul class="space-y-2">
+                    <li><i class="fa-brands fa-telegram text-cyan-400 w-4"></i> <a id="footer-tg" href="https://t.me/dtu_fellow" target="_blank" class="hover:text-cyan-400">Telegram Channel</a></li>
+                    <li><i class="fa-brands fa-tiktok text-cyan-400 w-4"></i> <a id="footer-tiktok" href="http://tiktok.com/@dtuecsf" target="_blank" class="hover:text-cyan-400">TikTok Account</a></li>
+                    <li><i class="fa-brands fa-instagram text-cyan-400 w-4"></i> <a id="footer-ig" href="https://www.instagram.com/debretaborfellow" target="_blank" class="hover:text-cyan-400">Instagram Page</a></li>
+                    <li><i class="fa-solid fa-envelope text-cyan-400 w-4"></i> <span id="footer-email">dtuecsf@gmail.com</span></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-semibold text-sm mb-3">Developer & Admin</h4>
+                <p class="mb-2">Developed by <strong id="footer-dev-name" class="text-white">Dereje Zena</strong>.</p>
+                <button onclick="openAdminModal()" class="bg-royal-800 hover:bg-royal-700 text-cyan-300 font-semibold px-4 py-2 rounded-lg border border-royal-600 transition flex items-center gap-2">
+                    <i class="fa-solid fa-sliders"></i> Access Admin CMS
+                </button>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-6 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-2 text-center text-slate-500">
+            <p>© <span id="year">2026</span> Debre Tabor University Evangelical Christian Students Fellowship. All rights reserved.</p>
+            <p>Designed with Deep Royal Blue & Cyan Theme.</p>
+        </div>
+    </footer>
+
+    <!-- ADMIN CMS MODAL -->
+    <div id="admin-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-navy-900 border border-royal-700 w-full max-w-4xl max-h-[90vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+            
+            <!-- Modal Header -->
+            <div class="bg-royal-900 border-b border-royal-700 px-6 py-4 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 bg-royal-800 rounded-lg text-cyan-400"><i class="fa-solid fa-gears text-lg"></i></div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Fellowship Admin CMS Control Panel</h3>
+                        <p class="text-xs text-cyan-300">Default PIN: 1234 (Fully Editable)</p>
+                    </div>
+                </div>
+                <button onclick="closeAdminModal()" class="text-slate-400 hover:text-white text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- PIN Login View -->
+            <div id="admin-login-view" class="p-8 text-center space-y-4 my-auto max-w-sm mx-auto w-full">
+                <i class="fa-solid fa-shield-halved text-5xl text-royal-500 mb-2"></i>
+                <h4 class="text-xl font-bold text-white">Admin Authentication</h4>
+                <p class="text-xs text-slate-400">Enter your secure Security PIN to access CMS panel controls.</p>
+                <input type="password" id="admin-pin-input" placeholder="Enter PIN (Default: 1234)" class="w-full bg-navy-950 border border-royal-800 rounded-lg px-4 py-2.5 text-center text-white text-lg tracking-widest focus:outline-none focus:border-cyan-400">
+                <p id="pin-error" class="text-red-400 text-xs hidden font-semibold">Invalid Security PIN!</p>
+                <button onclick="verifyAdminPIN()" class="w-full bg-cyan-500 hover:bg-cyan-400 text-navy-950 font-bold py-2.5 rounded-lg transition shadow-lg shadow-cyan-500/20">
+                    Unlock Admin Panel
+                </button>
+            </div>
+
+            <!-- Authenticated Admin CMS View -->
+            <div id="admin-cms-view" class="hidden flex-grow flex flex-col md:flex-row overflow-hidden">
+                <!-- Sidebar Tabs -->
+                <div class="w-full md:w-56 bg-navy-950 border-r border-royal-900 p-3 space-y-1 overflow-y-auto shrink-0 flex md:flex-col gap-1 md:gap-0">
+                    <button onclick="switchAdminTab('general')" class="admin-tab-btn active w-full text-left px-3 py-2.5 rounded-lg text-xs font-semibold text-slate-300 hover:bg-royal-900/60 transition flex items-center gap-2" data-tab="general">
+                        <i class="fa-solid fa-sliders text-cyan-400 w-4"></i> General Info
+                    </button>
+                    <button onclick="switchAdminTab('announcements')" class="admin-tab-btn w-full text-left px-3 py-2.5 rounded-lg text-xs font-semibold text-slate-300 hover:bg-royal-900/60 transition flex items-center gap-2" data-tab="announcements">
+                        <i class="fa-solid fa-bullhorn text-cyan-400 w-4"></i> Announcements
+                    </button>
+                    <button onclick="switchAdminTab('programs')" class="admin-tab-btn w-full text-left px-3 py-2.5 rounded-lg text-xs font-semibold text-slate-300 hover:bg-royal-900/60 transition flex items-center gap-2" data-tab="programs">
+                        <i class="fa-regular fa-calendar-alt text-cyan-400 w-4"></i> Programs
+                    </button>
+                    <button onclick="switchAdminTab('ministries')" class="admin-tab-btn w-full text-left px-3 py-2.5 rounded-lg text-xs font-semibold text-slate-300 hover:bg-royal-900/60 transition flex items-center gap-2" data-tab="ministries">
+                        <i class="fa-solid fa-users text-cyan-400 w-4"></i> Ministry Leaders
+                    </button>
+                    <button onclick="switchAdminTab('media')" class="admin-tab-btn w-full text-left px-3 py-2.5 rounded-lg text-xs font-semibold text-slate-300 hover:bg-royal-900/60 transition flex items-center gap-2" data-tab="media">
+                        <i class="fa-solid fa-folder-open text-cyan-400 w-4"></i> Media & Audio
+                    </button>
+                    <button onclick="switchAdminTab('developer')" class="admin-tab-btn w-full text-left px-3 py-2.5 rounded-lg text-xs font-semibold text-slate-300 hover:bg-royal-900/60 transition flex items-center gap-2" data-tab="developer">
+                        <i class="fa-solid fa-user-gear text-cyan-400 w-4"></i> Developer Info
+                    </button>
+                    <button onclick="switchAdminTab('security')" class="admin-tab-btn w-full text-left px-3 py-2.5 rounded-lg text-xs font-semibold text-slate-300 hover:bg-royal-900/60 transition flex items-center gap-2" data-tab="security">
+                        <i class="fa-solid fa-key text-cyan-400 w-4"></i> Admin PIN
+                    </button>
+                </div>
+
+                <!-- CMS Tab Panels Content -->
+                <div class="flex-grow p-6 overflow-y-auto space-y-6">
+                    
+                    <!-- TAB 1: GENERAL INFO & BRANDING -->
+                    <div id="tab-general" class="cms-tab-content space-y-4">
+                        <h4 class="text-base font-bold text-white border-b border-royal-800 pb-2">Branding, Contacts & Social Media</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-xs text-slate-300 font-medium block mb-1">Site Title</label>
+                                <input type="text" id="cms-site-title" class="w-full bg-navy-950 border border-royal-800 rounded px-3 py-2 text-xs text-white">
+                            </div>
+                            <div>
+                                <label class="text-xs text-slate-300 font-medium block mb-1">Subtitle</label>
+                                <input type="text" id="cms-site-subtitle" class="w-full bg-navy-950 border border-royal-800 rounded px-3 py-2 text-xs text-white">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="text-xs text-slate-300 font-medium block mb-1">Main Slogan (Amharic / English)</label>
+                                <input type="text" id="cms-site-slogan" class="w-full bg-navy-950 border border-royal-800 rounded px-3 py-2 text-xs text-white">
+                            </div>
+
+                            <!-- Image Uploaders -->
+                            <div>
+                                <label class="text-xs text-slate-300 font-medium block mb-1">Official Logo (Local File Upload)</label>
+                                <input type="file" id="cms-logo-file" accept="image/*" onchange="handleFileUpload(this, 'site-logo')" class="w-full text-xs text-slate-400 file:mr-2 file:py-1 file:px-3 file:rounded file:border-0 file:bg-royal-700 file:text-white">
+                            </div>
+                            <div>
+                                <label class="text-xs text-slate-300 font-medium block mb-1">Hero Banner Photo (Local File Upload)</label>
+                                <input type="file" id="cms-banner-file" accept="image/*" onchange="handleFileUpload(this, 'hero-banner')" class="w-full text-xs text-slate-400 file:mr-2 file:py-1 file:px-3 file:rounded file:border-0 file:bg-royal-700 file:text-white">
+                            </div>
+
+                            <!-- Social Links -->
+                            <div>
+                                <label class="text-xs text-slate-300 font-medium block mb-1">Telegram Link</label>
+                                <input type="text" id="cms-tg" class="w-full bg-navy-950 border border-royal-800 rounded px-3 py-2 text-xs text-white">
+                            </div>
+                            <div>
+                                <label class="text-xs text-slate-300 font-medium block mb-1">TikTok Link</label>
+                                <input type="text" id="cms-tiktok" class="w-full bg-navy-950 border border-royal-800 rounded px-3 py-2 text-xs text-white">
+                            </div>
+                            <div>
+                                <label class="text-xs text-slate-300 font-medium block mb-1">Instagram Link</label>
+                                <input type="text" id="cms-ig" class="w-full bg-navy-950 border border-royal-800 rounded px-3 py-2 text-xs text-white">
+                            </div>
+                            <div>
+                                <label class="text-xs text-slate-300 font-medium block mb-1">Contact Email</label>
+                                <input type="email" id="cms-email" class="w-full bg-navy-950 border border-royal-800 rounded px-3 py-2 text-xs text-white">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="text-xs text-slate-300 font-medium block mb-1">Fellowship Physical Address</label>
+                                <input type="text" id="cms-address" class="w-full bg-navy-950 border border-royal-800 rounded px-3 py-2 text-xs text-white">
+                            </div>
+                        </div>
+                        <button onclick="saveGeneralCMS()" class="bg-cyan-500 text-navy-950 font-bold text-xs px-5 py-2.5 rounded hover:bg-cyan-400 transition">Save General Info</button>
+                    </div>
+
+                    <!-- TAB 2: ANNOUNCEMENTS CMS CRUD -->
+                    <div id="tab-announcements" class="cms-tab-content space-y-4 hidden">
+                        <h4 class="text-base font-bold text-white border-b border-royal-800 pb-2">Notice Board CRUD</h4>
+                        <form onsubmit="handleSaveAnnouncement(event)" class="bg-navy-950 p-4 rounded-xl border border-royal-900 space-y-3">
+                            <input type="hidden" id="ann-edit-id">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <div>
+                                    <label class="text-xs text-slate-400 block mb-1">Title (English)</label>
+                                    <input type="text" id="ann-title-en" required class="w-full bg-navy-900 border border-royal-800 rounded px-3 py-1.5 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="text-xs text-slate-400 block mb-1">Title (Amharic 🇪🇹)</label>
+                                    <input type="text" id="ann-title-am" required class="w-full bg-navy-900 border border-royal-800 rounded px-3 py-1.5 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="text-xs text-slate-400 block mb-1">Priority Category</label>
+                                    <select id="ann-category" class="w-full bg-navy-900 border border-royal-800 rounded px-3 py-1.5 text-xs text-white">
+                                        <option value="Urgent">Urgent</option>
+                                        <option value="General">General</option>
+                                        <option value="Event">Event</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="text-xs text-slate-400 block mb-1">Date String</label>
+                                    <input type="text" id="ann-date" placeholder="e.g. Oct 12, 2026" class="w-full bg-navy-900 border border-royal-800 rounded px-3 py-1.5 text-xs text-white">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="text-xs text-slate-400 block mb-1">Content Details (English)</label>
+                                <textarea id="ann-desc-en" rows="2" required class="w-full bg-navy-900 border border-royal-800 rounded px-3 py-1.5 text-xs text-white"></textarea>
+                            </div>
+                            <div>
+                                <label class="text-xs text-slate-400 block mb-1">Content Details (Amharic 🇪🇹)</label>
+                                <textarea id="ann-desc-am" rows="2" required class="w-full bg-navy-900 border border-royal-800 rounded px-3 py-1.5 text-xs text-white"></textarea>
+                            </div>
+                            <button type="submit" class="bg-royal-600 hover:bg-royal-500 text-white font-bold text-xs px-4 py-2 rounded transition">Save Announcement</button>
+                        </form>
+
+                        <!-- Existing Announcements List -->
+                        <div id="cms-announcements-list" class="space-y-2"></div>
+                    </div>
+
+                    <!-- TAB 3: PROGRAMS SCHEDULE CMS -->
+                    <div id="tab-programs" class="cms-tab-content space-y-4 hidden">
+                        <h4 class="text-base font-bold text-white border-b border-royal-800 pb-2">Program Schedules CRUD</h4>
+                        <form onsubmit="handleSaveProgram(event)" class="bg-navy-950 p-4 rounded-xl border border-royal-900 space-y-3">
+                            <input type="hidden" id="prog-edit-id">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <div>
+                                    <label class="text-xs text-slate-400 block mb-1">Program Title (English)</label>
+                                    <input type="text" id="prog-title-en" required class="w-full bg-navy-900 border border-royal-800 rounded px-3 py-1.5 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="text-xs text-slate-400 block mb-1">Program Title (Amharic 🇪🇹)</label>
+                                    <input type="text" id="prog-title-am" required class="w-full bg-navy-900 border border-royal-800 rounded px-3 py-1.5 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="text-xs text-slate-400 block mb-1">Day & Time</label>
+                                    <input type="text" id="prog-time" placeholder="e.g. Wednesday 11:30 Local Time" required class="w-full bg-navy-900 border border-royal-800 rounded px-3 py-1.5 text-xs text-white">
+                                </div>
+                                <div>
+                                    <label class="text-xs text-slate-400 block mb-1">Venue / Location</label>
+                                    <input type="text" id="prog-venue" placeholder="e.g. Main Student Center Room 12" required class="w-full bg-navy-900 border border-royal-800 rounded px-3 py-1.5 text-xs text-white">
+                                </div>
+                            </div>
+                            <button type="submit" class="bg-royal-600 hover:bg-royal-500 text-white font-bold text-xs px-4 py-2 rounded transition">Save Program Schedule</button>
+                        </form>
+                        <div id="cms-programs-list" class="space-y-2"></div>
+                    </div>
+
+                    <!-- TAB 4: MINISTRIES LEADERSHIP CMS -->
+                    <div id="tab-ministries" class="cms-tab-content space-y-4 hidden">
+                        <h4 class="text-base font-bold text-white border-b border-royal-800 pb-2">Ministry Teams & Leaders Editor (8 Departments)</h4>
+                        <div id="cms-ministries-editor" class="space-y-4">
+                            <!-- Dynamically generated 8 ministry edit forms -->
+                        </div>
+                    </div>
+
+                    <!-- TAB 5: MEDIA VAULT UPLOADER -->
+                    <div id="tab-media" class="cms-tab-content space-y-6 hidden">
+                        <h4 class="text-base font-bold text-white border-b border-royal-800 pb-2">Media Vault (Local Audio MP3 & PDF Uploads)</h4>
+                        
+                        <!-- Upload Audio -->
+                        <div class="bg-navy-950 p-4 rounded-xl border border-royal-900 space-y-3">
+                            <h5 class="text-xs font-bold text-cyan-300 uppercase">Add Audio Track (MP3)</h5>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <input type="text" id="media-audio-title" placeholder="Audio Title" class="bg-navy-900 border border-royal-800 rounded px-3 py-1.5 text-xs text-white">
+                                <input type="text" id="media-audio-speaker" placeholder="Speaker / Worship Leader" class="bg-navy-900 border border-royal-800 rounded px-3 py-1.5 text-xs text-white">
+                                <div class="md:col-span-2">
+                                    <input type="file" id="media-audio-file" accept="audio/*" class="w-full text-xs text-slate-400 file:mr-2 file:py-1 file:px-3 file:rounded file:border-0 file:bg-royal-700 file:text-white">
+                                </div>
+                            </div>
+                            <button onclick="handleAddAudio()" class="bg-cyan-500 text-navy-950 font-bold text-xs px-4 py-1.5 rounded">Upload Local Audio Track</button>
+                        </div>
+
+                        <!-- Upload PDF Guide -->
+                        <div class="bg-navy-950 p-4 rounded-xl border border-royal-900 space-y-3">
+                            <h5 class="text-xs font-bold text-red-400 uppercase">Add Devotional / Study PDF</h5>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <input type="text" id="media-pdf-title" placeholder="Devotional / Guide Title" class="bg-navy-900 border border-royal-800 rounded px-3 py-1.5 text-xs text-white">
+                                <input type="text" id="media-pdf-size" placeholder="File Size / Author" class="bg-navy-900 border border-royal-800 rounded px-3 py-1.5 text-xs text-white">
+                                <div class="md:col-span-2">
+                                    <input type="file" id="media-pdf-file" accept=".pdf" class="w-full text-xs text-slate-400 file:mr-2 file:py-1 file:px-3 file:rounded file:border-0 file:bg-royal-700 file:text-white">
+                                </div>
+                            </div>
+                            <button onclick="handleAddPDF()" class="bg-cyan-500 text-navy-950 font-bold text-xs px-4 py-1.5 rounded">Upload Devotional PDF</button>
+                        </div>
+                    </div>
+
+                    <!-- TAB 6: DEVELOPER CMS -->
+                    <div id="tab-developer" class="cms-tab-content space-y-4 hidden">
+                        <h4 class="text-base font-bold text-white border-b border-royal-800 pb-2">Developer Profile Info CMS</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-xs text-slate-300 font-medium block mb-1">Developer Name</label>
+                                <input type="text" id="cms-dev-name" class="w-full bg-navy-950 border border-royal-800 rounded px-3 py-2 text-xs text-white">
+                            </div>
+                            <div>
+                                <label class="text-xs text-slate-300 font-medium block mb-1">Role Title</label>
+                                <input type="text" id="cms-dev-role" class="w-full bg-navy-950 border border-royal-800 rounded px-3 py-2 text-xs text-white">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="text-xs text-slate-300 font-medium block mb-1">Developer Photo Upload</label>
+                                <input type="file" id="cms-dev-photo-file" accept="image/*" onchange="handleFileUpload(this, 'dev-photo')" class="w-full text-xs text-slate-400 file:mr-2 file:py-1 file:px-3 file:rounded file:border-0 file:bg-royal-700 file:text-white">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="text-xs text-slate-300 font-medium block mb-1">Bio Description</label>
+                                <textarea id="cms-dev-bio" rows="3" class="w-full bg-navy-950 border border-royal-800 rounded px-3 py-2 text-xs text-white"></textarea>
+                            </div>
+                            <div>
+                                <label class="text-xs text-slate-300 font-medium block mb-1">Telegram Handle 1</label>
+                                <input type="text" id="cms-dev-tg1" class="w-full bg-navy-950 border border-royal-800 rounded px-3 py-2 text-xs text-white">
+                            </div>
+                            <div>
+                                <label class="text-xs text-slate-300 font-medium block mb-1">Telegram Handle 2</label>
+                                <input type="text" id="cms-dev-tg2" class="w-full bg-navy-950 border border-royal-800 rounded px-3 py-2 text-xs text-white">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="text-xs text-slate-300 font-medium block mb-1">Telegram Handle 3</label>
+                                <input type="text" id="cms-dev-tg3" class="w-full bg-navy-950 border border-royal-800 rounded px-3 py-2 text-xs text-white">
+                            </div>
+                        </div>
+                        <button onclick="saveDeveloperCMS()" class="bg-cyan-500 text-navy-950 font-bold text-xs px-5 py-2.5 rounded hover:bg-cyan-400 transition">Update Developer Details</button>
+                    </div>
+
+                    <!-- TAB 7: SECURITY PIN -->
+                    <div id="tab-security" class="cms-tab-content space-y-4 hidden">
+                        <h4 class="text-base font-bold text-white border-b border-royal-800 pb-2">Change Security PIN</h4>
+                        <div class="max-w-md space-y-3">
+                            <div>
+                                <label class="text-xs text-slate-300 font-medium block mb-1">Current PIN</label>
+                                <input type="password" id="pin-current" class="w-full bg-navy-950 border border-royal-800 rounded px-3 py-2 text-xs text-white">
+                            </div>
+                            <div>
+                                <label class="text-xs text-slate-300 font-medium block mb-1">New Security PIN</label>
+                                <input type="password" id="pin-new" class="w-full bg-navy-950 border border-royal-800 rounded px-3 py-2 text-xs text-white">
+                            </div>
+                            <button onclick="changeAdminPIN()" class="bg-cyan-500 text-navy-950 font-bold text-xs px-4 py-2 rounded">Update Admin Security PIN</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT APP STATE & CMS LOGIC -->
+    <script>
+        // Default Application State Store
+        const defaultState = {
+            lang: 'en', // 'en' or 'am'
+            adminPIN: '1234',
+            general: {
+                title: "DTU Fellowship",
+                subtitle: "Debre Tabor University Evangelical Christian Fellowship",
+                slogan: "« ውዱን ለውዳችን - ህብረታችን መሣሪያችን! »",
+                logoUrl: "https://images.unsplash.com/photo-1548625361-180e03c4f748?w=150&auto=format&fit=crop&q=80",
+                bannerUrl: "https://images.unsplash.com/photo-1519817650390-64a93db51149?w=1600&auto=format&fit=crop&q=80",
+                telegram: "https://t.me/dtu_fellow",
+                tiktok: "http://tiktok.com/@dtuecsf",
+                instagram: "https://www.instagram.com/debretaborfellow",
+                email: "dtuecsf@gmail.com",
+                address: "Debre Tabor University Main Campus, Ethiopia"
+            },
+            developer: {
+                name: "Dereje Zena",
+                role: "Software Developer & Fellowship Tech Lead",
+                bio: "Dedicated to leveraging technology for gospel advancement and providing modern digital tools for Debre Tabor University students.",
+                photoUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80",
+                tg1: "https://t.me/mediator_one",
+                tg2: "https://t.me/derezena",
+                tg3: "https://t.me/darius_zena"
+            },
+            announcements: [
+                { id: 1, titleEn: "Annual Grand Worship Night", titleAm: "ዓመታዊ ታላቅ የአምልኮ ምሽት", category: "Urgent", date: "Oct 15, 2026", descEn: "Join us this Friday at Main Auditorium for a powerful night of prayer and praise.", descAm: "በዚህ አርብ በዋናው አዳራሽ በሚደረገው ታላቅ የጸሎትና የምስጋና ምሽት ላይ ይገኝ።" },
+                { id: 2, titleEn: "Freshman Welcome Conference", titleAm: "የአዲስ ገቢ ተማሪዎች አቀባበል", category: "Event", date: "Oct 20, 2026", descEn: "Special orientation program for all first-year fellowship students.", descAm: "ለአዲስ ገቢ ተማሪዎቻችን የተዘጋጀ ልዩ የትውውቅና የምክር ፕሮግራም።" },
+                { id: 3, titleEn: "Weekly Bible Study Material", titleAm: "የሳምንቱ የባይብል ጥናት", category: "General", date: "Oct 10, 2026", descEn: "The PDF study guide for Chapter 4 is now uploaded to the media vault.", descAm: "የምዕራፍ 4 የጥናት ሰነድ በሜዲያ ቮልት ክፍላችን ላይ ተጭኗል።" }
+            ],
+            programs: [
+                { id: 1, titleEn: "Sunday Morning Main Worship", titleAm: "የእሁድ ጠዋት አምልኮ", time: "Sunday 2:00 - 6:00 Local Time", venue: "Main Fellowship Hall" },
+                { id: 2, titleEn: "Mid-Week Prayer & Intercession", titleAm: "የእሮብ የጸሎት ፕሮግራም", time: "Wednesday 11:30 Local Time", venue: "Prayer Chapel" },
+                { id: 3, titleEn: "Friday Night Evangelism Training", titleAm: "የአርብ ምሽት ስልጠና", time: "Friday 11:30 Local Time", venue: "Auditorium B" }
+            ],
+            ministries: [
+                { id: 1, nameEn: "Executive Board", nameAm: "ሥራ አስፈፃሚ ቦርድ", leader: "Joseph & Dereje Zena", phone: "+251911001122", tg: "@dtu_exec", photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80", desc: "Overseeing spiritual guidance, administration, and campus fellowship vision." },
+                { id: 2, nameEn: "Mobilizers Team / Sendek", nameAm: "ሰንደቅ / የሰባኪያን ቡድን", leader: "Sendek Tekle", phone: "+251922334455", tg: "@sendek_dtu", photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&auto=format&fit=crop&q=80", desc: "Mobilizing campus outreach and coordinating evangelistic campaigns." },
+                { id: 3, nameEn: "Worship Team", nameAm: "የአምልኮ ክፍል", leader: "Abigel Tadesse", phone: "+251933445566", tg: "@worship_dtu", photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&auto=format&fit=crop&q=80", desc: "Leading songs, choirs, and instrumental music for all fellowship gatherings." },
+                { id: 4, nameEn: "Prayer Ministry", nameAm: "የጸሎት ክፍል", leader: "Melkamu Worku", phone: "+251944556677", tg: "@prayer_dtu", photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&auto=format&fit=crop&q=80", desc: "Sustaining prayer chains, intercessory nights, and spiritual breakthrough." },
+                { id: 5, nameEn: "Mission & Outreach", nameAm: "ሚሽንና ወንጌል ስርጭት", leader: "Eliyas Hailu", phone: "+251955667788", tg: "@mission_dtu", photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&auto=format&fit=crop&q=80", desc: "Organizing dormitory visits, campus preaching, and rural mission trips." },
+                { id: 6, nameEn: "Media & Tech Department", nameAm: "ሚዲያና ቴክኖሎጂ", leader: "Dereje Zena", phone: "+251966778899", tg: "@mediator_one", photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80", desc: "Handling live sound, visual graphics, video recording, and web systems." },
+                { id: 7, nameEn: "Nathan Team / Servants", nameAm: "ናታን የደቀመዛሙርት ቡድን", leader: "Selamu Alemu", phone: "+251977889900", tg: "@nathan_dtu", photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&auto=format&fit=crop&q=80", desc: "Providing ushering, hospitality, student care, and event logistics." },
+                { id: 8, nameEn: "Art & Literature", nameAm: "ኪነ-ጥበብና ሥነ-ጽሑፍ", leader: "Ephrem Girma", phone: "+251988990011", tg: "@art_dtu", photo: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=200&auto=format&fit=crop&q=80", desc: "Expressing gospel truth through drama, poetry, books, and creative arts." }
+            ],
+            prayers: [
+                { id: 1, name: "Samuel T.", title: "Midterm Exams Strength", body: "Please pray for God's wisdom and peace as exams approach next week.", count: 14 },
+                { id: 2, name: "Anonymous", title: "Family Healing", body: "Lifting up my parents back home for divine physical healing.", count: 21 }
+            ],
+            qaList: [
+                { id: 1, user: "Kaleb", text: "When does the new Christian student mentorship program launch?" },
+                { id: 2, user: "Bethlehem", text: "Glory to God! The Friday night worship was so uplifting!" }
+            ],
+            audioTracks: [
+                { id: 1, title: "Deep Fellowship Worship - Live At DTU", speaker: "DTU Worship Team", fileUrl: "#" }
+            ],
+            pdfGuides: [
+                { id: 1, title: "Discipleship Guide Part 1.pdf", size: "1.2 MB", fileUrl: "#" }
+            ]
+        };
+
+        // Load Application State
+        let appData = JSON.parse(localStorage.getItem('dtu_app_state')) || defaultState;
+
+        function saveAppState() {
+            localStorage.setItem('dtu_app_state', JSON.stringify(appData));
+            renderAll();
+        }
+
+        // Language Switcher Engine
+        const translations = {
+            en: {
+                navHome: "Home", navNotices: "Notices", navPrograms: "Programs", navMinistries: "Ministries",
+                navPrayer: "Prayer Wall", navMedia: "Media Vault", navDeveloper: "Developer",
+                lblLiveUpdates: "ANNOUNCEMENTS", btnHeroAnn: "Latest Notices", btnHeroProg: "Weekly Schedule",
+                hdrNotice: "Notice Board & Announcements", hdrProg: "Programs & Weekly Schedule",
+                hdrMinistry: "Ministry Teams & Leadership", hdrPrayer: "Community Prayer Wall",
+                subPrayer: "Share your prayer requests and lift up one another in faith.",
+                hdrQA: "Fellowship Q&A", subQA: "Questions, testimonies, and spiritual discussions.",
+                hdrAudio: "Audio Worship & Sermons", hdrPdf: "Study Guides & Devotionals",
+                btnSubmitPrayer: "Submit Prayer", btnPostPrayer: "Post Prayer Request", btnPostQA: "Submit Discussion"
+            },
+            am: {
+                navHome: "መነሻ", navNotices: "ማስታወቂያዎች", navPrograms: "መርሐ-ግብር", navMinistries: "ክፍላት",
+                navPrayer: "የጸሎት ጥያቄ", navMedia: "ሜዲያ ቮልት", navDeveloper: "ሶፍትዌር አዘጋጅ",
+                lblLiveUpdates: "አዲስ ማስታወቂያ", btnHeroAnn: "ቅርብ ማስታወቂያዎች", btnHeroProg: "ሳምንታዊ ፕሮግራም",
+                hdrNotice: "የማስታወቂያ ሰሌዳ", hdrProg: "የሳምንቱ መርሐ-ግብር",
+                hdrMinistry: "የአገልግሎት ክፍሎችና መሪዎች", hdrPrayer: "የህብረቱ የጸሎት ግድግዳ",
+                subPrayer: "የጸሎት ጥያቄዎችዎን ያካፍሉ፤ በጸሎት እርስ በእርስ እንተጋገዝ።",
+                hdrQA: "የህብረቱ ውይይትና ጥያቄዎች", subQA: "መንፈሳዊ ጥያቄዎች፣ ምስክርነቶችና ሀሳቦች።",
+                hdrAudio: "የአምልኮና የስብከት ድምፆች", hdrPdf: "የባይብል ጥናት ሰነዶች",
+                btnSubmitPrayer: "ጸሎት ይላኩ", btnPostPrayer: "የጸሎት ጥያቄ ይለጥፉ", btnPostQA: "ሀሳብ ይላኩ"
+            }
+        };
+
+        function toggleLanguage() {
+            appData.lang = appData.lang === 'en' ? 'am' : 'en';
+            document.getElementById('lang-btn-text').innerText = appData.lang === 'en' ? 'አማርኛ' : 'English';
+            saveAppState();
+        }
+
+        // Render Dynamic Interface
+        function renderAll() {
+            const t = translations[appData.lang];
+            
+            // Branding & Text
+            document.getElementById('site-title').innerText = appData.general.title;
+            document.getElementById('site-subtitle').innerText = appData.general.subtitle;
+            document.getElementById('hero-slogan').innerText = appData.general.slogan;
+            document.getElementById('site-logo').src = appData.general.logoUrl;
+            document.getElementById('footer-logo').src = appData.general.logoUrl;
+            document.getElementById('hero-bg-img').src = appData.general.bannerUrl;
+
+            document.getElementById('top-email').innerText = appData.general.email;
+            document.getElementById('top-address').innerText = appData.general.address;
+            document.getElementById('link-tg').href = appData.general.telegram;
+            document.getElementById('link-tiktok').href = appData.general.tiktok;
+            document.getElementById('link-ig').href = appData.general.instagram;
+
+            document.getElementById('footer-title').innerText = appData.general.title;
+            document.getElementById('footer-slogan').innerText = appData.general.slogan;
+            document.getElementById('footer-email').innerText = appData.general.email;
+            document.getElementById('footer-tg').href = appData.general.telegram;
+            document.getElementById('footer-tiktok').href = appData.general.tiktok;
+            document.getElementById('footer-ig').href = appData.general.instagram;
+
+            // Nav Labels
+            ['Home', 'Notices', 'Programs', 'Ministries', 'Prayer', 'Media', 'Developer'].forEach(key => {
+                const navEl = document.getElementById(`nav-${key.toLowerCase()}`);
+                const mobEl = document.getElementById(`mob-${key.toLowerCase()}`);
+                if (navEl) navEl.innerText = t[`nav${key}`];
+                if (mobEl) mobEl.innerText = t[`nav${key}`];
+            });
+
+            document.getElementById('lbl-live-updates').innerText = t.lblLiveUpdates;
+            document.getElementById('btn-hero-announcements').innerText = t.btnHeroAnn;
+            document.getElementById('btn-hero-schedule').innerText = t.btnHeroProg;
+            document.getElementById('hdr-notice-title').innerText = t.hdrNotice;
+            document.getElementById('hdr-programs-title').innerText = t.hdrProg;
+            document.getElementById('hdr-ministry-title').innerText = t.hdrMinistry;
+            document.getElementById('hdr-prayer-wall').innerText = t.hdrPrayer;
+            document.getElementById('sub-prayer-wall').innerText = t.subPrayer;
+            document.getElementById('hdr-qa-title').innerText = t.hdrQA;
+            document.getElementById('sub-qa-title').innerText = t.subQA;
+            document.getElementById('hdr-audio-vault').innerText = t.hdrAudio;
+            document.getElementById('hdr-pdf-vault').innerText = t.hdrPdf;
+            document.getElementById('btn-post-prayer').innerText = t.btnPostPrayer;
+            document.getElementById('btn-post-qa').innerText = t.btnPostQA;
+
+            // Ticker
+            const tickerContainer = document.getElementById('ticker-content');
+            const tickerText = appData.announcements.map(a => `🔔 [${a.category.toUpperCase()}] ${appData.lang === 'am' ? a.titleAm : a.titleEn}`).join(' &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp; ');
+            tickerContainer.innerHTML = tickerText + ' &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp; ' + tickerText;
+
+            // Render Announcements Cards
+            renderAnnouncements('All');
+
+            // Render Programs
+            const progGrid = document.getElementById('programs-grid');
+            progGrid.innerHTML = appData.programs.map(p => `
+                <div class="glass-card p-6 rounded-2xl border border-royal-800/80 hover:border-cyan-400/50 transition">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-royal-800 text-cyan-300 font-bold text-xs px-2.5 py-1 rounded-md border border-royal-600">
+                            <i class="fa-regular fa-clock mr-1"></i> ${p.time}
+                        </span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">${appData.lang === 'am' ? p.titleAm : p.titleEn}</h3>
+                    <p class="text-xs text-slate-300 flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-cyan-400"></i> ${p.venue}</p>
+                </div>
+            `).join('');
+
+            // Render Ministries
+            const minGrid = document.getElementById('ministries-grid');
+            minGrid.innerHTML = appData.ministries.map(m => `
+                <div class="glass-card p-5 rounded-2xl border border-royal-800/80 hover:border-cyan-400/50 transition text-center flex flex-col justify-between">
+                    <div>
+                        <img src="${m.photo}" alt="${m.leader}" class="w-20 h-20 rounded-full object-cover mx-auto mb-3 border-2 border-cyan-400 shadow-md">
+                        <h4 class="font-bold text-white text-base">${appData.lang === 'am' ? m.nameAm : m.nameEn}</h4>
+                        <p class="text-xs text-cyan-400 font-medium mb-2"><i class="fa-solid fa-user-shield text-[10px]"></i> ${m.leader}</p>
+                        <p class="text-xs text-slate-300 leading-relaxed">${m.desc}</p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-800 flex justify-center gap-3 text-xs text-slate-400">
+                        <a href="tel:${m.phone}" class="hover:text-cyan-400"><i class="fa-solid fa-phone"></i> Call</a>
+                        <span>•</span>
+                        <a href="https://t.me/${m.tg.replace('@','')}" target="_blank" class="hover:text-cyan-400"><i class="fa-brands fa-telegram"></i> Telegram</a>
+                    </div>
+                </div>
+            `).join('');
+
+            // Render Prayer Wall
+            document.getElementById('prayer-count-badge').innerText = `${appData.prayers.length} Prayers`;
+            const prayerList = document.getElementById('prayer-list');
+            prayerList.innerHTML = appData.prayers.map(pr => `
+                <div class="bg-navy-900/80 p-4 rounded-xl border border-royal-900 flex justify-between items-start gap-4">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="font-bold text-white text-sm">${pr.title}</span>
+                            <span class="text-[10px] text-cyan-400 bg-royal-900/80 px-2 py-0.5 rounded">by ${pr.name}</span>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">${pr.body}</p>
+                    </div>
+                    <button onclick="incrementPrayer(${pr.id})" class="bg-royal-800 hover:bg-royal-700 text-cyan-300 text-xs px-3 py-1.5 rounded-lg border border-royal-600 shrink-0 flex items-center gap-1.5 transition">
+                        <i class="fa-solid fa-hands-praying"></i> <span>${pr.count}</span>
+                    </button>
+                </div>
+            `).join('');
+
+            // Render QA Discussion
+            const qaList = document.getElementById('qa-list');
+            qaList.innerHTML = appData.qaList.map(q => `
+                <div class="bg-navy-900/80 p-3 rounded-xl border border-royal-900 space-y-1">
+                    <span class="text-xs font-bold text-cyan-400">${q.user}</span>
+                    <p class="text-xs text-slate-300">${q.text}</p>
+                </div>
+            `).join('');
+
+            // Render Media Vault
+            const audioList = document.getElementById('audio-list');
+            audioList.innerHTML = appData.audioTracks.map(a => `
+                <div class="bg-navy-950 p-3 rounded-xl border border-royal-900 flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-royal-800 text-cyan-400 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-play text-xs"></i>
+                        </div>
+                        <div>
+                            <h5 class="text-xs font-bold text-white">${a.title}</h5>
+                            <p class="text-[10px] text-slate-400">${a.speaker}</p>
+                        </div>
+                    </div>
+                    <audio controls class="h-8 max-w-[180px]">
+                        <source src="${a.fileUrl}">
+                    </audio>
+                </div>
+            `).join('');
+
+            const pdfList = document.getElementById('pdf-list');
+            pdfList.innerHTML = appData.pdfGuides.map(p => `
+                <div class="bg-navy-950 p-3 rounded-xl border border-royal-900 flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-file-pdf text-red-400 text-xl"></i>
+                        <div>
+                            <h5 class="text-xs font-bold text-white">${p.title}</h5>
+                            <p class="text-[10px] text-slate-400">${p.size}</p>
+                        </div>
+                    </div>
+                    <a href="${p.fileUrl}" download class="bg-royal-800 hover:bg-royal-700 text-cyan-300 text-xs px-3 py-1.5 rounded-lg border border-royal-600 transition">
+                        <i class="fa-solid fa-download"></i>
+                    </a>
+                </div>
+            `).join('');
+
+            // Render Developer Info
+            document.getElementById('dev-name').innerText = appData.developer.name;
+            document.getElementById('dev-role').innerText = appData.developer.role;
+            document.getElementById('dev-bio').innerText = appData.developer.bio;
+            document.getElementById('dev-photo').src = appData.developer.photoUrl;
+            document.getElementById('footer-dev-name').innerText = appData.developer.name;
+
+            document.getElementById('dev-handle-tg1').href = appData.developer.tg1;
+            document.getElementById('dev-handle-tg1').innerHTML = `<i class="fa-brands fa-telegram text-cyan-400"></i> ${appData.developer.tg1.split('/').pop()}`;
+            document.getElementById('dev-handle-tg2').href = appData.developer.tg2;
+            document.getElementById('dev-handle-tg2').innerHTML = `<i class="fa-brands fa-telegram text-cyan-400"></i> ${appData.developer.tg2.split('/').pop()}`;
+            document.getElementById('dev-handle-tg3').href = appData.developer.tg3;
+            document.getElementById('dev-handle-tg3').innerHTML = `<i class="fa-brands fa-telegram text-cyan-400"></i> ${appData.developer.tg3.split('/').pop()}`;
+        }
+
+        // Announcement Filtering
+        function renderAnnouncements(filter) {
+            const grid = document.getElementById('announcements-grid');
+            const items = filter === 'All' ? appData.announcements : appData.announcements.filter(a => a.category === filter);
+            
+            grid.innerHTML = items.map(a => {
+                let badgeClass = "bg-royal-800 text-cyan-300 border-royal-600";
+                if(a.category === 'Urgent') badgeClass = "bg-red-950 text-red-300 border-red-800";
+                if(a.category === 'Event') badgeClass = "bg-amber-950 text-amber-300 border-amber-800";
+
+                return `
+                    <div class="glass-card p-6 rounded-2xl border border-royal-800/80 flex flex-col justify-between hover:border-cyan-400/50 transition">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-[10px] px-2.5 py-0.5 rounded-full border ${badgeClass}">
+                                    ${a.category.toUpperCase()}
+                                </span>
+                                <span class="text-slate-400 text-xs"><i class="fa-regular fa-calendar mr-1"></i> ${a.date}</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">${appData.lang === 'am' ? a.titleAm : a.titleEn}</h3>
+                            <p class="text-xs text-slate-300 leading-relaxed">${appData.lang === 'am' ? a.descAm : a.descEn}</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterAnnouncements(cat) {
+            document.querySelectorAll('.ann-filter-btn').forEach(btn => {
+                if(btn.getAttribute('data-filter') === cat) {
+                    btn.className = "ann-filter-btn bg-royal-700 text-white text-xs font-semibold px-3 py-1.5 rounded-full border border-royal-500 transition shrink-0";
+                } else {
+                    btn.className = "ann-filter-btn bg-navy-900 text-slate-300 hover:text-white text-xs font-semibold px-3 py-1.5 rounded-full border border-slate-700 transition shrink-0";
+                }
+            });
+            renderAnnouncements(cat);
+        }
+
+        // Interaction Handlers
+        function handlePrayerSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('prayer-name').value || "Anonymous";
+            const title = document.getElementById('prayer-title').value;
+            const body = document.getElementById('prayer-body').value;
+
+            appData.prayers.unshift({ id: Date.now(), name, title, body, count: 1 });
+            saveAppState();
+            document.getElementById('form-add-prayer').reset();
+        }
+
+        function incrementPrayer(id) {
+            const p = appData.prayers.find(item => item.id === id);
+            if (p) {
+                p.count++;
+                saveAppState();
+            }
+        }
+
+        function handleQASubmit(e) {
+            e.preventDefault();
+            const user = document.getElementById('qa-user').value;
+            const text = document.getElementById('qa-text').value;
+
+            appData.qaList.unshift({ id: Date.now(), user, text });
+            saveAppState();
+            document.getElementById('form-add-qa').reset();
+        }
+
+        // Local Base64 File Uploader Logic
+        function handleFileUpload(input, targetKey) {
+            const file = input.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const base64 = e.target.result;
+                if (targetKey === 'site-logo') appData.general.logoUrl = base64;
+                if (targetKey === 'hero-banner') appData.general.bannerUrl = base64;
+                if (targetKey === 'dev-photo') appData.developer.photoUrl = base64;
+                saveAppState();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Admin CMS Controls
+        function openAdminModal() {
+            document.getElementById('admin-modal').classList.remove('hidden');
+        }
+
+        function closeAdminModal() {
+            document.getElementById('admin-modal').classList.add('hidden');
+        }
+
+        function verifyAdminPIN() {
+            const pin = document.getElementById('admin-pin-input').value;
+            if (pin === appData.adminPIN) {
+                document.getElementById('admin-login-view').classList.add('hidden');
+                document.getElementById('admin-cms-view').classList.remove('hidden');
+                populateCMSFields();
+            } else {
+                document.getElementById('pin-error').classList.remove('hidden');
+            }
+        }
+
+        function switchAdminTab(tabName) {
+            document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('bg-royal-900', 'text-cyan-400'));
+            document.querySelector(`[data-tab="${tabName}"]`).classList.add('bg-royal-900', 'text-cyan-400');
+
+            document.querySelectorAll('.cms-tab-content').forEach(c => c.classList.add('hidden'));
+            document.getElementById(`tab-${tabName}`).classList.remove('hidden');
+        }
+
+        function populateCMSFields() {
+            // General Info
+            document.getElementById('cms-site-title').value = appData.general.title;
+            document.getElementById('cms-site-subtitle').value = appData.general.subtitle;
+            document.getElementById('cms-site-slogan').value = appData.general.slogan;
+            document.getElementById('cms-tg').value = appData.general.telegram;
+            document.getElementById('cms-tiktok').value = appData.general.tiktok;
+            document.getElementById('cms-ig').value = appData.general.instagram;
+            document.getElementById('cms-email').value = appData.general.email;
+            document.getElementById('cms-address').value = appData.general.address;
+
+            // Developer Info
+            document.getElementById('cms-dev-name').value = appData.developer.name;
+            document.getElementById('cms-dev-role').value = appData.developer.role;
+            document.getElementById('cms-dev-bio').value = appData.developer.bio;
+            document.getElementById('cms-dev-tg1').value = appData.developer.tg1;
+            document.getElementById('cms-dev-tg2').value = appData.developer.tg2;
+            document.getElementById('cms-dev-tg3').value = appData.developer.tg3;
+
+            // Announcements CRUD List
+            renderCMSAnnouncementsList();
+            // Programs CRUD List
+            renderCMSProgramsList();
+            // Ministries CMS Editor List
+            renderCMSMinistriesEditor();
+        }
+
+        function saveGeneralCMS() {
+            appData.general.title = document.getElementById('cms-site-title').value;
+            appData.general.subtitle = document.getElementById('cms-site-subtitle').value;
+            appData.general.slogan = document.getElementById('cms-site-slogan').value;
+            appData.general.telegram = document.getElementById('cms-tg').value;
+            appData.general.tiktok = document.getElementById('cms-tiktok').value;
+            appData.general.instagram = document.getElementById('cms-ig').value;
+            appData.general.email = document.getElementById('cms-email').value;
+            appData.general.address = document.getElementById('cms-address').value;
+            saveAppState();
+            alert("General Info Saved!");
+        }
+
+        function saveDeveloperCMS() {
+            appData.developer.name = document.getElementById('cms-dev-name').value;
+            appData.developer.role = document.getElementById('cms-dev-role').value;
+            appData.developer.bio = document.getElementById('cms-dev-bio').value;
+            appData.developer.tg1 = document.getElementById('cms-dev-tg1').value;
+            appData.developer.tg2 = document.getElementById('cms-dev-tg2').value;
+            appData.developer.tg3 = document.getElementById('cms-dev-tg3').value;
+            saveAppState();
+            alert("Developer Info Updated!");
+        }
+
+        function changeAdminPIN() {
+            const curr = document.getElementById('pin-current').value;
+            const newPin = document.getElementById('pin-new').value;
+
+            if (curr === appData.adminPIN && newPin) {
+                appData.adminPIN = newPin;
+                saveAppState();
+                alert("Security PIN successfully changed!");
+            } else {
+                alert("Incorrect current PIN!");
+            }
+        }
+
+        // Announcement CRUD Functions
+        function handleSaveAnnouncement(e) {
+            e.preventDefault();
+            const id = document.getElementById('ann-edit-id').value;
+            const titleEn = document.getElementById('ann-title-en').value;
+            const titleAm = document.getElementById('ann-title-am').value;
+            const category = document.getElementById('ann-category').value;
+            const date = document.getElementById('ann-date').value || "Today";
+            const descEn = document.getElementById('ann-desc-en').value;
+            const descAm = document.getElementById('ann-desc-am').value;
+
+            if (id) {
+                const item = appData.announcements.find(a => a.id == id);
+                if (item) Object.assign(item, { titleEn, titleAm, category, date, descEn, descAm });
+            } else {
+                appData.announcements.unshift({ id: Date.now(), titleEn, titleAm, category, date, descEn, descAm });
+            }
+
+            saveAppState();
+            renderCMSAnnouncementsList();
+            e.target.reset();
+            document.getElementById('ann-edit-id').value = '';
+        }
+
+        function renderCMSAnnouncementsList() {
+            const container = document.getElementById('cms-announcements-list');
+            container.innerHTML = appData.announcements.map(a => `
+                <div class="bg-navy-950 p-3 rounded-lg border border-royal-900 flex justify-between items-center text-xs">
+                    <div>
+                        <strong class="text-white">${a.titleEn}</strong> <span class="text-cyan-400">(${a.category})</span>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="editAnnouncement(${a.id})" class="text-cyan-400 hover:underline">Edit</button>
+                        <button onclick="deleteAnnouncement(${a.id})" class="text-red-400 hover:underline">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function editAnnouncement(id) {
+            const a = appData.announcements.find(item => item.id === id);
+            if (!a) return;
+            document.getElementById('ann-edit-id').value = a.id;
+            document.getElementById('ann-title-en').value = a.titleEn;
+            document.getElementById('ann-title-am').value = a.titleAm;
+            document.getElementById('ann-category').value = a.category;
+            document.getElementById('ann-date').value = a.date;
+            document.getElementById('ann-desc-en').value = a.descEn;
+            document.getElementById('ann-desc-am').value = a.descAm;
+        }
+
+        function deleteAnnouncement(id) {
+            appData.announcements = appData.announcements.filter(a => a.id !== id);
+            saveAppState();
+            renderCMSAnnouncementsList();
+        }
+
+        // Programs CRUD Functions
+        function handleSaveProgram(e) {
+            e.preventDefault();
+            const id = document.getElementById('prog-edit-id').value;
+            const titleEn = document.getElementById('prog-title-en').value;
+            const titleAm = document.getElementById('prog-title-am').value;
+            const time = document.getElementById('prog-time').value;
+            const venue = document.getElementById('prog-venue').value;
+
+            if (id) {
+                const item = appData.programs.find(p => p.id == id);
+                if (item) Object.assign(item, { titleEn, titleAm, time, venue });
+            } else {
+                appData.programs.push({ id: Date.now(), titleEn, titleAm, time, venue });
+            }
+
+            saveAppState();
+            renderCMSProgramsList();
+            e.target.reset();
+        }
+
+        function renderCMSProgramsList() {
+            const container = document.getElementById('cms-programs-list');
+            container.innerHTML = appData.programs.map(p => `
+                <div class="bg-navy-950 p-3 rounded-lg border border-royal-900 flex justify-between items-center text-xs">
+                    <div>
+                        <strong class="text-white">${p.titleEn}</strong> - <span class="text-slate-400">${p.time}</span>
+                    </div>
+                    <button onclick="deleteProgram(${p.id})" class="text-red-400 hover:underline">Delete</button>
+                </div>
+            `).join('');
+        }
+
+        function deleteProgram(id) {
+            appData.programs = appData.programs.filter(p => p.id !== id);
+            saveAppState();
+            renderCMSProgramsList();
+        }
+
+        // Ministries Leadership CMS Editor
+        function renderCMSMinistriesEditor() {
+            const container = document.getElementById('cms-ministries-editor');
+            container.innerHTML = appData.ministries.map((m, idx) => `
+                <div class="bg-navy-950 p-4 rounded-xl border border-royal-900 space-y-3">
+                    <h5 class="text-xs font-bold text-cyan-300">Department ${idx+1}: ${m.nameEn}</h5>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <input type="text" value="${m.leader}" onchange="updateMinistryField(${m.id}, 'leader', this.value)" placeholder="Leader Name" class="bg-navy-900 border border-royal-800 rounded px-3 py-1 text-xs text-white">
+                        <input type="text" value="${m.phone}" onchange="updateMinistryField(${m.id}, 'phone', this.value)" placeholder="Phone" class="bg-navy-900 border border-royal-800 rounded px-3 py-1 text-xs text-white">
+                        <input type="text" value="${m.tg}" onchange="updateMinistryField(${m.id}, 'tg', this.value)" placeholder="Telegram" class="bg-navy-900 border border-royal-800 rounded px-3 py-1 text-xs text-white">
+                        <input type="file" accept="image/*" onchange="uploadMinistryPhoto(this, ${m.id})" class="text-xs text-slate-400 file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:bg-royal-700 file:text-white">
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateMinistryField(id, field, value) {
+            const m = appData.ministries.find(item => item.id === id);
+            if (m) {
+                m[field] = value;
+                saveAppState();
+            }
+        }
+
+        function uploadMinistryPhoto(input, id) {
+            const file = input.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const m = appData.ministries.find(item => item.id === id);
+                if (m) {
+                    m.photo = e.target.result;
+                    saveAppState();
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Media Vault File Handlers
+        function handleAddAudio() {
+            const title = document.getElementById('media-audio-title').value;
+            const speaker = document.getElementById('media-audio-speaker').value;
+            const fileInput = document.getElementById('media-audio-file');
+            const file = fileInput.files[0];
+
+            if (title && file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    appData.audioTracks.unshift({ id: Date.now(), title, speaker, fileUrl: e.target.result });
+                    saveAppState();
+                    alert("Audio Track Added!");
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function handleAddPDF() {
+            const title = document.getElementById('media-pdf-title').value;
+            const size = document.getElementById('media-pdf-size').value || "PDF Document";
+            const fileInput = document.getElementById('media-pdf-file');
+            const file = fileInput.files[0];
+
+            if (title && file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    appData.pdfGuides.unshift({ id: Date.now(), title, size, fileUrl: e.target.result });
+                    saveAppState();
+                    alert("Devotional PDF Uploaded!");
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function toggleMobileMenu() {
+            const mob = document.getElementById('mobile-menu');
+            mob.classList.toggle('hidden');
+        }
+
+        // Initialize on Window Load
+        window.onload = function () {
+            renderAll();
+        };
+    </script>
+</body>
+</html>
